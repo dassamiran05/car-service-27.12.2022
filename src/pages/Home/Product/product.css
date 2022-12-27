@@ -1,0 +1,21 @@
+.pro img{
+    width: 196px;
+    height: 147px;
+    object-fit: contain;
+}
+
+.pro figure{
+    background-color: #f3f3f3;
+}
+
+.pro{
+    border: 1px solid #f3f3f3;
+}
+
+.card-body p{
+    color: #FF3811;
+}
+
+.star{
+    cursor: pointer;
+}

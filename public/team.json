@@ -1,0 +1,20 @@
+[
+    {
+        "id": "1",
+        "name": "Avinash Mukherjee",
+        "img": "https://i.ibb.co/r4TGhpJ/3.jpg",
+        "designation":"System Expert"
+    },
+    {
+        "id": "2",
+        "name": "Dimpi jha",
+        "img": "https://i.ibb.co/80x1RL2/2.jpg",
+        "designation": "Admin Manager"
+    },
+    {
+        "id": "3",
+        "name": "Pratima Majumder",
+        "img": "https://i.ibb.co/B3bGkTp/1.jpg",
+        "designation":"Senior Manager"
+    }
+]
