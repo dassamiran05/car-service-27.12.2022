@@ -34,14 +34,14 @@ const Header = () => {
 
     const menuItems = <>
         <li className='font-semibold'><Link to="/">Home</Link></li>
-        <li className='font-semibold'><Link to="#">About us</Link></li>
+        <li className='font-semibold'><Link to="/about">About us</Link></li>
         {
             user?.email && <>
                 <li className='font-semibold'><Link to="/dashboard">Dashboard</Link></li>
                 <li className='font-semibold'><Link to="/orders">Orders</Link></li>
             </>
         }
-        <li className='font-semibold'><Link to="#">Contact us</Link></li>
+        <li className='font-semibold'><Link to="/contact">Contact us</Link></li>
 
     </>
 

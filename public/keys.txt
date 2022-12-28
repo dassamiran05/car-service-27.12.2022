@@ -11,3 +11,14 @@ For backend env
 DB_USER=Carserviceuser
 DB_PASSWORD=Whfpo7Ldh1CzadJv
 ACCESS_TOKEN=01fa8750983309207ad9b3fbc63cfb449a7ed8de399d2a4f5a8b70f90957b159a0b316dff63c4e25551c7deb50d4b80c856c70de33aabcd3d6c4eb66b15f151c
+
+For mailtrap.io
+MAIL_HOST="smtp.mailtrap.io"
+MAIL_PORT=2525
+MAIL_USER="85a18cde7a88c8"
+MAIL_PASS="ef91d1c7962ec9"
+
+
+for Gmail.com
+GMAIL_USER="dassamiran05@gmail.com"
+GMAIL_PASS="vargmcqkkdsljhgw"

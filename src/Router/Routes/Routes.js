@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../../layout/DashboardLayout";
 import Main from "../../layout/Main";
 import Checkout from "../../pages/Checkout/Checkout";
-// import Dashboard from "../../pages/Dashboard/Dashboard";
 import Home from "../../pages/Home/Home/Home";
 import ServiceDetail from "../../pages/Home/Service/ServiceDetail";
 import Login from "../../pages/Login/Login";
@@ -16,6 +15,8 @@ import AddService from "../../pages/Dashboard/AddService";
 import Allorders from "../../pages/Dashboard/Allorders";
 import Abcd from "../../pages/Dashboard/Abcd";
 import Manageservices from "../../pages/Dashboard/Manageservices";
+import Aboutmain from "../../pages/Aboutmain/Aboutmain"
+import Contactus from "../../pages/Contact/Contactus";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,14 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>
+            },
+            {
+                path: '/about',
+                element: <Aboutmain></Aboutmain>
+            },
+            {
+                path: '/contact',
+                element: <Contactus></Contactus>
             },
             {
                 path: '/login',
