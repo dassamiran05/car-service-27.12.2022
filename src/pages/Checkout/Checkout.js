@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-import MyBackgroundImage from '../../assets/images/banner/2.jpg';
+import PageTitle from '../../shared/pageTitle/PageTitle';
+import PageBannerTitle from '../../shared/PageBannerTitle/PageBannerTitle';
 
 const Checkout = () => {
     const service = useLoaderData();
@@ -54,10 +55,8 @@ const Checkout = () => {
 
     return (
         <>
-            <div className='w-full h-96 pl-8 flex items-center relative rounded mb-24 mt-8 banner-sec' style={{backgroundImage:`url(${MyBackgroundImage})`}}>
-                    <h3 className='text-5xl text-white font-bold'>Check out</h3>
-                    <div className='angle'><p>Home/Checkout</p></div>
-            </div>
+            <PageTitle title="Checkout"></PageTitle>
+            <PageBannerTitle title="Checkout" subtitle="Home/Checkout"></PageBannerTitle>
             <div className='my-12'>
                 <form onSubmit={handlePlaceOrder} className='p-8' style={{backgroundColor:'#F3F3F3'}}>
                     {/* <h2 className='text-4xl mb-2'>Your are about to order : <span className='font-bold'>{title}</span></h2>

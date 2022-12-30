@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import MyBackgroundImage from '../../assets/images/banner/2.jpg';
+import PageBannerTitle from '../../shared/PageBannerTitle/PageBannerTitle';
+import PageTitle from '../../shared/pageTitle/PageTitle';
 
 
 
@@ -37,11 +38,8 @@ const Contactus = () => {
     }
     return (
         <>
-            
-            <div className='w-full h-96 pl-8 flex items-center relative rounded mb-24 mt-8 banner-sec' style={{backgroundImage:`url(${MyBackgroundImage})`}}>
-                <h3 className='text-5xl text-white font-bold'>Contact us</h3>
-                <div className='angle'><p>Home/Service Detail</p></div>
-            </div>
+            <PageTitle title="Contact us"></PageTitle>
+            <PageBannerTitle title="Contact us"></PageBannerTitle>
                 <div className='my-20'>
                     <div className='text-center'>
                         <p className='text-2xl font-bold text-orange-600 leading-7'>Get in Touch</p>

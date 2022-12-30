@@ -3,6 +3,8 @@ import toast from 'react-hot-toast';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import Loading from '../../shared/loading/Loading';
 import OrderRow from './OrderRow';
+import PageTitle from '../../shared/pageTitle/PageTitle';
+import PageBannerTitle from '../../shared/PageBannerTitle/PageBannerTitle';
 
 const Orders = () => {
 
@@ -49,6 +51,8 @@ const Orders = () => {
 
     return (
         <>
+            <PageTitle title="Orders"></PageTitle>
+            <PageBannerTitle title="Orders"></PageBannerTitle>
             {   
                 orderloading ? <p>loading...</p> :
                 <div className='my-12'>

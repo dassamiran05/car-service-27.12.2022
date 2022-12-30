@@ -1,8 +1,9 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import './ServiceDetail.css';
-import MyBackgroundImage from '../../../assets/images/banner/2.jpg';
 import Sidebar from './Sidebar';
+import PageTitle from '../../../shared/pageTitle/PageTitle';
+import PageBannerTitle from '../../../shared/PageBannerTitle/PageBannerTitle';
 
 const ServiceDetail = () => {
     const serviceDetail = useLoaderData();
@@ -11,10 +12,8 @@ const ServiceDetail = () => {
     
     return (
         <>
-            <div className='w-full h-96 pl-8 flex items-center relative rounded mb-24 mt-8 banner-sec' style={{backgroundImage:`url(${MyBackgroundImage})`}}>
-                <h3 className='text-5xl text-white font-bold'>Service Detail</h3>
-                <div className='angle'><p>Home/Service Detail</p></div>
-            </div>
+            <PageTitle title="Service detail"></PageTitle>
+            <PageBannerTitle title="Service Detail" subtitle="Home/Service Detail"></PageBannerTitle>
             <div className="flex md:flex-row flex-col mb-16">
                 <div className=' lg:w-3/4 sm:w-full mr-3'>
                     <div className='w-full'>

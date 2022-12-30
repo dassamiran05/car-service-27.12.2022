@@ -11,7 +11,7 @@ const Services = () => {
         fetch('http://localhost:5000/services').then(res => res.json()).then(data => setServices(data));
     }, []);
     return (
-        <div className='my-20'>
+        <div className='my-20' id='services'>
             <div className='text-center'>
                 <p className='text-2xl font-bold text-orange-600 leading-7'>Services</p>
                 <h2 className='text-5xl font-bold'>Our Service Area</h2>

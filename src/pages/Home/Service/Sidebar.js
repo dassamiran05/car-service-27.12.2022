@@ -29,7 +29,7 @@ const Sidebar = ({id, price}) => {
                         <div className='p-5 flex flex-col justify-center text-center rounded' style={{backgroundColor:'#fff'}}>
                             <p className='text-xl font-bold leading-9' style={{color:'#151515'}}><span style={{color:'#FF3811'}}>Car Doctor</span> special</p>
                             <p  className='text-base font-bold leading-9' style={{color:'#FF3811'}}><span style={{color:'#737373'}}>Save upto</span> 20% off</p>
-                            <button className='p-3 font-semibold text-lg leading-5 rounded' style={{backgroundColor:'#FF3811', color:'#fff', marginBottom:'-40px'}}>Get a quite</button>
+                            <Link to="/contact"><button className='p-3 font-semibold text-lg leading-5 rounded' style={{backgroundColor:'#FF3811', color:'#fff', marginBottom:'-40px'}}>Get a quote</button></Link>
                         </div>
                     </div>
                     <div className='mt-8'>
