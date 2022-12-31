@@ -17,11 +17,14 @@ import Abcd from "../../pages/Dashboard/Abcd";
 import Manageservices from "../../pages/Dashboard/Manageservices";
 import Aboutmain from "../../pages/Aboutmain/Aboutmain"
 import Contactus from "../../pages/Contact/Contactus";
+import Payment from "../../pages/Dashboard/Payment";
+import DisplayError from "../../shared/DisplayError/DisplayError";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement:<DisplayError></DisplayError>,
         children: [
             {
                 path: '/',
@@ -66,6 +69,7 @@ const router = createBrowserRouter([
     {
         path:'/dashboard',
         element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        errorElement:<DisplayError></DisplayError>,
         children:[
             {
                 path:'/dashboard',
@@ -90,6 +94,11 @@ const router = createBrowserRouter([
             {
                 path:'/dashboard/manageservices',
                 element:<AdminRoute><Manageservices></Manageservices></AdminRoute>
+            },
+            {
+                path:'/dashboard/payment/:id',
+                element:<Payment></Payment>,
+                loader:({params}) => fetch(`http://localhost:5000/orders/${params.id}`)
             }
         ]
     }

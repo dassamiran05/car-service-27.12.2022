@@ -7,9 +7,6 @@ import { Link } from 'react-router-dom';
 const Manageservices = () => {
     const [services, setServices] = useState([]);
     // const [allorderloading, setAllOrderLoading] = useState(false);
-
-    
-    console.log(services);
     useEffect(() => {
         function getAllservicesbyadmin(){
             // setAllOrderLoading(true);

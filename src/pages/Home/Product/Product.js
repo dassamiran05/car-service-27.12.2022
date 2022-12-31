@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { FaStar } from 'react-icons/fa';
-import Rating from '../Rating/Rating';
+// import Rating from '../Rating/Rating';
 import './product.css';
 
 const Product = ({ product }) => {
@@ -18,7 +18,7 @@ const Product = ({ product }) => {
                         const ratingValue = i + 1;
                         return (
 
-                            <label>
+                            <label key={i}>
                                 {/* <input type="radio" name="rating" className='hidden' value={ratingValue} onClick={() => setRating(ratingValue)} /> */}
                                 <FaStar size={25} className="mx-1 star" color={ratingValue <= ratings ? '#ffc107' : '#e4e5e9'}></FaStar>
                             </label>

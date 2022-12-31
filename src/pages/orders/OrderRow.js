@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const OrderRow = ({ order, handleDelete }) => {
-    const { _id, customer, email, message, phone, price, service, serviceName } = order;
+    const { _id, customer, email, message, phone, price, service, serviceName, paid } = order;
     const [orderService, setOrderService] = useState([]);
-    // console.log(orderService);
+    // const [paid, setPaid] = useState(false);
 
     useEffect(() => {
         fetch(`http://localhost:5000/service/${service}`)
@@ -42,9 +43,16 @@ const OrderRow = ({ order, handleDelete }) => {
                 <span className="badge badge-ghost badge-sm">$ {price}</span>
             </td>
             <td>Purple</td>
-            <th>
-                <button className="btn btn-ghost btn-xs">details</button>
-            </th>
+            <td>
+                {
+                    price && !paid && <Link to={`/dashboard/payment/${_id}`}>
+                        <button className="btn btn-secondary btn-xs">Pay</button>
+                    </Link>
+                }
+                {
+                    price && paid && <span className="text-green-500">Paid</span>
+                }
+            </td>
         </tr>
     );
 };

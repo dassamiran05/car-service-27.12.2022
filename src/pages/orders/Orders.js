@@ -71,7 +71,7 @@ const Orders = () => {
                                             <th>Name</th>
                                             <th>Service name</th>
                                             <th>Favorite Color</th>
-                                            <th>Message</th>
+                                            <th>Payment</th>
                                         </tr>
                                     </thead>
                                     <tbody>
