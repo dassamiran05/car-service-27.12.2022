@@ -67,10 +67,6 @@ const AddService = () => {
     }
     return (
         <>
-            {/* <div className='w-full h-96 pl-8 flex items-center relative rounded mb-24 mt-8 banner-sec' style={{backgroundImage:`url(${MyBackgroundImage})`}}>
-                    <h3 className='text-5xl text-white font-bold'>Add Service</h3>
-                    <div className='angle'><p>Home/Addservice</p></div>
-            </div> */}
             <div className='my-12'>
                 <form onSubmit={handleAddService} className='p-8' style={{backgroundColor:'#F3F3F3'}}>
                     <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>

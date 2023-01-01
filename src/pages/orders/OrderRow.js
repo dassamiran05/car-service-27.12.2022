@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 const OrderRow = ({ order, handleDelete }) => {
     const { _id, customer, email, message, phone, price, service, serviceName, paid } = order;
     const [orderService, setOrderService] = useState([]);
-    // const [paid, setPaid] = useState(false);
 
     useEffect(() => {
         fetch(`http://localhost:5000/service/${service}`)

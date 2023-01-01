@@ -8,6 +8,7 @@ import PageTitle from '../../shared/pageTitle/PageTitle';
 const Contactus = () => {
 
     const [formData, setFormdata] = useState({});
+    const [loading, setLoading] = useState(false);
 
     // const [sent, setSent] = useState(false);
     const handleinputdetails = e => {
@@ -16,9 +17,8 @@ const Contactus = () => {
 
     const handleSubmitDetails = (event) => {
         event.preventDefault();
-        // try{
-        //     setSent(true);
-            fetch('http://localhost:5000/send_mail', {
+        setLoading(true);
+        fetch('http://localhost:5000/send_mail', {
                 method:'POST',
                 headers:{
                     'content-type':'application/json'
@@ -27,14 +27,16 @@ const Contactus = () => {
             })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                if(data.status === 401 || !data){
+                    console.log("Error");
+                    return ;
+                }
                 toast.success("Email has been sent");
-                event.target.reset();
+                setLoading(false);
+                setFormdata({});
             });
-        // }
-        // catch(error){
-        //     console.log(error);
-        // }
+
+            
     }
     return (
         <>
@@ -59,12 +61,9 @@ const Contactus = () => {
                                     
                                     <input name="email" type="email" placeholder="Your email" value={formData.email || ''} onChange={handleinputdetails} className="input input-bordered w-full" />
                                     <textarea name="description" className="textarea textarea-bordered" onChange={handleinputdetails} value={formData.description || ''} placeholder="Your messages" required></textarea>
-                                    <input className='btn border-none' style={{backgroundColor:'#ff3811'}} type="submit" value="Send" />
+                                    <input className='btn border-none' style={{backgroundColor: loading ? 'gray' : '#ff3811'}} type="submit" value={loading ? 'Sending...' : "Send"} />
                                 </div>
                             </form>
-                            {/* :
-                            <div className='w-1/2 mx-auto p-8 flex items-center justify-center' style={{backgroundColor:'#F3F3F3'}}><h1 className="text-3xl">Email has beent sent</h1></div>
-                        } */}
                     </div>
                 </div> 
             <div>

@@ -126,8 +126,8 @@ const CheckoutForm = ({orders}) => {
                     },
                 }}
                 />
-                <button type="submit" className='btn btn-primary mt-5' disabled={!stripe || !clientSecret || processing}>
-                  Pay ${price}
+                <button type="submit" className='btn btn-primary mt-5'  disabled={!stripe || !clientSecret || processing}>
+                  { processing ? 'Processing' : `Pay ${price}`}
                 </button>
                 
             </form>

@@ -4,11 +4,14 @@ import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import PageTitle from '../../shared/pageTitle/PageTitle';
 import PageBannerTitle from '../../shared/PageBannerTitle/PageBannerTitle';
+import useOrders from '../../hooks/useOrders';
 
 const Checkout = () => {
     const service = useLoaderData();
     const { _id, title, price } = service;
     const { user } = useContext(AuthContext);
+
+    const [orders] = useOrders(user?.email);
 
 
     const handlePlaceOrder = event => {
@@ -33,7 +36,11 @@ const Checkout = () => {
             toast.error('Please provide a valid number');
         }
         else {
-            fetch('http://localhost:5000/orders', {
+            if(orders.find(order => order.service === _id)){
+                toast.error('You have already orderd the service');
+            }
+            else{
+                fetch('http://localhost:5000/orders', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -50,6 +57,8 @@ const Checkout = () => {
 
                 })
                 .catch(err => toast.error(err));
+            }
+            
         }
     }
 
