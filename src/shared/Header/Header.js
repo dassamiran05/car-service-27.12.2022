@@ -1,27 +1,27 @@
-import React, { useContext, useState, useEffect} from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
     const { user, signOutUser } = useContext(AuthContext);
+    const [userdetail, setUserDetail] = useState({});
+    // console.log(userdetail);
 
-    // const [orders, setOrder] = useState([]);
 
-    // useEffect(() => {
-    //     if(user?.email){
-    //         fetch(`http://localhost:5000/orders?email=${user?.email}`, {
-    //         headers:{
-    //             authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-    //         }
-    //         })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setOrder(data);
-    //         });
-    //     }
-        
-    // }, [user?.email])
+    useEffect(() => {
+        fetch(`http://localhost:5000/username?email=${user?.email}`, {
+            headers:{
+                authorization:`Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            setUserDetail(data);
+        });
+    }, [user?.email])
+
 
     const handleSignoutUser = () => {
         signOutUser()
@@ -98,7 +98,14 @@ const Header = () => {
                 {/* <button className="btn btn-outline btn-warning">Appointment</button> */}
                 {
                     user?.email ?
-                        <>
+                        <>  
+                            <div className='flex flex-col text-right'>
+                                <span style={{color:'#ff3811'}} className='text-xl'>{userdetail?.name}</span>
+                                {/* {
+                                    userdetail.role && <span className='text-xl'>{userdetail?.role}</span>
+                                } */}
+                            </div>
+                            
                             <button variant="link" className="btn btn-ghost" onClick={handleSignoutUser}>Sign out</button>
                         </>
                         :
