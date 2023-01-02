@@ -9,6 +9,39 @@
     display:inline-block;
     background: linear-gradient(to right, #151515 0%, rgba(21, 21, 21, 0) 100%);
   }
-  /* .carousel-img img{
-    display:block;
-  } */
+
+  
+
+  @media only screen and (max-width: 991px) {
+    .bantext{
+      top: 57% !important;
+    }
+
+    .banbutton{
+      bottom:22% !important;
+    }
+  }
+
+
+  @media only screen and (max-width: 767px) {
+    .bantext{
+      top: 63% !important;
+    }
+
+    .banbutton{
+      bottom:9% !important;
+    }
+  }
+  @media only screen and (max-width: 576px) {
+     .bantext{
+      width: 60%;
+    }
+
+    .banbutton{
+      bottom:5% !important;
+    }
+    .banhead h1{
+      font-size: 45px;
+      font-weight: 900;
+    }
+  }

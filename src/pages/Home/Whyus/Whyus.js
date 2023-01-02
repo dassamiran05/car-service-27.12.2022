@@ -14,7 +14,8 @@ const Whyus = () => {
             <h2 className='text-5xl font-bold'>Why Choose Us</h2>
             <p className='w-1/2 mx-auto leading-7 my-5'>The majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
         </div>
-        <div className='flex justify-between items-center mt-16'>
+        {/* <div className='flex justify-between items-center mt-16'> */}
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 sm:mx-auto'>
             <div style={{borderWidth:'1px', borderColor:'#f3f3f3',padding:'30px', display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
                 <img src={expert} alt='' className='mb-3'/>
                 <p className='text-xl font-bold not-italic'>Expert Team</p>

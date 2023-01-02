@@ -70,8 +70,8 @@ const Allorders = () => {
                                                 </th>
                                                 <th>Name</th>
                                                 <th>Service name</th>
-                                                <th>Favorite Color</th>
-                                                <th>Message</th>
+                                                <th>Email</th>
+                                                <th>Payment</th>
                                             </tr>
                                         </thead>
                                         <tbody>

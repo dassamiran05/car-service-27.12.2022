@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 
 const AllorderRow = ({order, handleOrder}) => {
-    const { _id, customer, email, message, phone, price, service, serviceName } = order;
+    const { _id, customer, email, message, phone, price, service, serviceName, paid } = order;
     const [orderService, setOrderService] = useState([]);
 
     useEffect(() => {
@@ -43,10 +43,15 @@ const AllorderRow = ({order, handleOrder}) => {
                     <br />
                         <span className="badge badge-ghost badge-sm">$ {price}</span>
                 </td>
-                <td>Purple</td>
-                    <th>
+                <td><span className='text-orange-500'><strong>{email}</strong></span></td>
+                <td>
+                {
+                  paid ? <span className='text-green-500'><strong>Paid</strong></span> : <span className='text-red-500'><strong>Pending</strong></span>
+                }
+                </td>
+                    {/* <th>
                         <button className="btn btn-ghost btn-xs">details</button>
-                    </th>
+                    </th> */}
             </tr>
         </>
     );

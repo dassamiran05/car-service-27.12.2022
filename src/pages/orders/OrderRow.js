@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const OrderRow = ({ order, handleDelete }) => {
-    const { _id, customer, email, message, phone, price, service, serviceName, paid } = order;
+    const { _id, customer, phone, price, service, serviceName, paid } = order;
     const [orderService, setOrderService] = useState([]);
 
     useEffect(() => {

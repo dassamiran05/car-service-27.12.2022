@@ -19,6 +19,7 @@ import Aboutmain from "../../pages/Aboutmain/Aboutmain"
 import Contactus from "../../pages/Contact/Contactus";
 import Payment from "../../pages/Dashboard/Payment";
 import DisplayError from "../../shared/DisplayError/DisplayError";
+import Userorder from "../../pages/Dashboard/Userorder";
 
 const router = createBrowserRouter([
     {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
             {
                 path:'/dashboard',
                 element:<Abcd></Abcd>
+            },
+            {
+                path:'/dashboard/userorder',
+                element:<Userorder></Userorder>
             },
             {
                 path:'/dashboard/allusers',

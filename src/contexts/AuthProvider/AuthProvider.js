@@ -21,6 +21,29 @@ const AuthProvider = ({ children }) => {
         }
     }, []);
 
+    
+
+      useEffect(() => {
+
+        const handleRefreshToken = () => {
+          fetch(`http://localhost:5000/check-token-expiration`, {
+            method: 'GET',
+            headers: {
+              authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            },
+          })
+            .then(res => {
+              res.json();
+              
+          })
+            .then(data => {
+              console.log(data);
+            })
+        }
+
+        handleRefreshToken();
+      }, [])
+
     const createUser = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);

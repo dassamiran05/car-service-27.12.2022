@@ -1,36 +1,41 @@
-import React, { useContext, useState, useEffect} from 'react';
-import toast from 'react-hot-toast';
+import React from 'react';
+// import { useEffect } from 'react';
+// import { useState } from 'react';
+import { useContext } from 'react';
+import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-// import Loading from '../../shared/loading/Loading';
-import OrderRow from './OrderRow';
+import useOrders from '../../hooks/useOrders';
 import PageTitle from '../../shared/pageTitle/PageTitle';
-import PageBannerTitle from '../../shared/PageBannerTitle/PageBannerTitle';
+import OrderRow from '../orders/OrderRow';
 
-const Orders = () => {
+const Userorder = () => {
 
     const { user } = useContext(AuthContext);
-    const [orderloading, setOrderloading] = useState(false);
+    // const [orderloading, setOrderloading] = useState(false);
 
-    const [orders, setOrder] = useState([]);
+    // const [orders, setOrder] = useState([]);
 
-    useEffect(() => {
-        function getOrderbyMail(){
-            setOrderloading(true);
-            fetch(`http://localhost:5000/orders?email=${user?.email}`, {
-                headers:{
-                    authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-                }
-            })
-            .then(res => res.json())
-            .then(data => {
-                setOrder(data);
-                setOrderloading(false);
-            });
-        }
 
-        getOrderbyMail();
+    // useEffect(() => {
+    //     function getOrderbyMail(){
+    //         setOrderloading(true);
+    //         fetch(`http://localhost:5000/orders?email=${user?.email}`, {
+    //             headers:{
+    //                 authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    //             }
+    //         })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setOrder(data);
+    //             setOrderloading(false);
+    //         });
+    //     }
+
+    //     getOrderbyMail();
         
-    }, [user?.email])
+    // }, [user?.email])
+
+    const [orders, setOrder, orderloading] = useOrders(user?.email);
 
 
 
@@ -48,11 +53,10 @@ const Orders = () => {
                 })
         }
     }
-
     return (
         <>
-            <PageTitle title="Orders"></PageTitle>
-            <PageBannerTitle title="Orders"></PageBannerTitle>
+            <PageTitle title="User order"></PageTitle>
+            {/* <PageBannerTitle title="Orders"></PageBannerTitle> */}
             {   
                 orderloading ? <p>loading...</p> :
                 <div className='my-12'>
@@ -96,4 +100,4 @@ const Orders = () => {
     );
 };
 
-export default Orders;
+export default Userorder;
