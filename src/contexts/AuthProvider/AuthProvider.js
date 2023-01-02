@@ -23,26 +23,26 @@ const AuthProvider = ({ children }) => {
 
     
 
-      useEffect(() => {
+      // useEffect(() => {
 
-        const handleRefreshToken = () => {
-          fetch(`http://localhost:5000/check-token-expiration`, {
-            method: 'GET',
-            headers: {
-              authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-            },
-          })
-            .then(res => {
-              res.json();
-              
-          })
-            .then(data => {
-              console.log(data);
-            })
-        }
+      //   const handleRefreshToken = () => {
+      //     fetch(`http://localhost:5000/check-token-expiration`, {
+      //       'content-type':'application/json',
+      //       headers: {
+      //         authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      //       },
+      //     })
+      //       .then(res => res.json())
+      //       .then(data => {
+      //         console.log(data);
+      //         if(data.status === 403 && data.message === 'Token expired'){
+      //           localStorage.removeItem('accessToken');
+      //         }
+      //       })
+      //   }
 
-        handleRefreshToken();
-      }, [])
+      //   handleRefreshToken();
+      // }, [])
 
     const createUser = (email, password) => {
         setLoading(true);

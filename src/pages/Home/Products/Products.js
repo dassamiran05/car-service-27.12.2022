@@ -26,9 +26,9 @@ const Products = () => {
                     ></Product>)
                 }
             </div>
-            <div className='my-5 text-center'>
+            {/* <div className='my-5 text-center'>
                 <Link to="#"><button className="btn btn-outline btn-warning">More Products</button></Link>
-            </div>
+            </div> */}
         </div>
     );
 };

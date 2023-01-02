@@ -8,3 +8,15 @@
         padding: 0 25px;
     }
  }
+
+
+ .more{
+    color:#ff3811;
+    border-color:#ff3811;
+ }
+
+ .more:hover{
+    color:#fff;
+    background-color:#ff3811;
+    border-color: #ff3811;
+ }

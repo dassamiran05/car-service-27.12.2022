@@ -25,7 +25,10 @@ const Header = () => {
 
     const handleSignoutUser = () => {
         signOutUser()
-        .then(res => console.log(res))
+        .then(res => {
+            console.log(res);
+            localStorage.removeItem('accessToken');
+        })
         .catch(error => console.error(error));
     }
 
