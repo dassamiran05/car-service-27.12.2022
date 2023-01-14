@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-// import { useEffect } from 'react';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
@@ -9,16 +8,14 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import PageTitle from '../../shared/pageTitle/PageTitle';
 
 const Signup = () => {
-    const {createUser, varifyEmail} = useContext(AuthContext);
-    // const [existsuser, setExistsuser] = useState(false);
+    const {createUser} = useContext(AuthContext);
     const initialvalues = {name : "", email : "", password : ""};
     const [formValues, setFormValues] = useState(initialvalues);
     const [formError, setFormError] = useState({});
-    
-
-
     // const [createdUserEmail, setCreatedUserEmail] = useState('');
     // const [token] = useToken(createdUserEmail);
+    // console.log(formError);
+    // console.log(Object.keys(formError).length);
 
     // const navigate = useNavigate();
 
@@ -27,36 +24,7 @@ const Signup = () => {
     // }
 
 
-    const handleCheckuser = (email , password, name) => {
-        if(email){
-            return fetch(`http://localhost:5000/checkuser?email=${email}`)
-            .then(res => res.json())
-            .then(data => {
-            if(data.alreadyExists){
-                // setExistsuser(true);
-                toast.error('Already have this user');
-            }else{
-                // setExistsuser(false);
-                // const userEmail = formValues.email;
-                // const userPass = formValues.password;
-                // const userName = formValues.name;
-                // if(!existsuser){
-                createUser(email, password)
-                .then(res =>
-                {
-                    const user = res.user;
-                    saveUser(name, email);
-                    handleEmailVerification();
-                    toast.success('Please verify your email address');
-                })
-                .catch(err => console.error(err));
-                // }
-            }
-            })
-        }
-        
-    }
-   
+    
 
     const handleChangeInput = (e) =>{
         const {name, value} = e.target;
@@ -66,44 +34,58 @@ const Signup = () => {
 
     const handleSignup = event =>{
         event.preventDefault();
-
-        setFormError({});
-
         const error = validate(formValues);
         setFormError(error);
 
-        if(Object.keys(error).length === 0){
+    
+
+        if(Object.keys(formError).length === 0 && ((!formValues.email) && (!formValues.password) && (!formValues.name))){
             const userEmail = formValues.email;
             const userPass = formValues.password;
             const userName = formValues.name;
 
-            handleCheckuser(userEmail, userPass, userName);
+            fetch(`http://localhost:5000/checkuser?email=${userEmail}`)
+            .then(res => res.json())
+            .then(data => {
+                if(data.alreadyExists){
+                    toast.error('User already exists in the database');
+                    setFormValues(initialvalues);
+                }
+            });
 
-            // if(!existsuser){
-            //     createUser(userEmail, userPass)
-            //     .then(res =>
-            //     {
-            //         const user = res.user;
-            //         toast.success('User created successfully');
-            //         saveUser(userName, userEmail);
-            //         setCreatedUserEmail(userEmail);
-            //         console.log(user);
-            //     })
-            //     .catch(err => console.error(err));
-            // }
-            // else{
-            //     toast.error('Already have this user');
-            // }              
-        }      
+            createUser(userEmail, userPass)
+            .then(res =>
+            {
+                const user = res.user;
+                toast.success('User created successfully');
+                saveUser(userName, userEmail);
+                console.log(user);
+            })
+            .catch(err => console.error(err));
+
+            
+        }
+        
+        
+        // const form = event.target;
+        // const email = form.email.value;
+        // const password = form.password.value;
+        // const name = form.name.value;
+
+        // if (password.length < 6) {
+        //     toast.error('Password should be minimum 6 digits');
+        // }
+        // else{
+        //     createUser(email, password)
+        //     .then(res =>{
+        //     const user = res.user;
+        //     toast.success('User created successfully');
+        //     saveUser(name, email);
+        //     console.log(user);
+        //     })
+        //     .catch(err => console.error(err));
+        // }    
     }
-
-    const handleEmailVerification = () => {
-        varifyEmail()
-        .then(() => {})
-        .catch(error => console.error(error));
-    }
-
-    
 
 
     const validate = values => {
@@ -142,12 +124,24 @@ const Signup = () => {
         })
         .then(res => res.json())
         .then(data => {
-            if(data.acknowledged){
-                // setCreatedUserEmail(email);
-                console.log(data.acknowledged);
-            }   
+            // if(data.acknowledged){
+            //     getUserToken(email);
+            //     setCreatedUserEmail(email);
+            // }
+            
         })
     }
+
+    // const getUserToken = email =>{
+    //     fetch(`http://localhost:5000/jwt?email=${email}`)
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         if(data.accessToken){
+    //             localStorage.setItem('accessToken', data.accessToken);
+    //             navigate('/');
+    //         }
+    //     })
+    // }
     return (
         <>
             <PageTitle title="Signup"></PageTitle>
@@ -164,21 +158,21 @@ const Signup = () => {
                                     <span className="label-text">Name</span>
                                 </label>
                                 <input type="text" name="name" placeholder="Your name" className="input input-bordered" value={formValues.name} onChange={handleChangeInput}/>
-                                { formError.name && <p className='text-red-500'>{formError.name}</p> }
+                                <p className='text-red-500'>{formError.name}</p>
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
                                 <input type="text" name="email" placeholder="email" className="input input-bordered" value={formValues.email} onChange={handleChangeInput}/>
-                                { formError.email && <p className='text-red-500'>{formError.email}</p> }
+                                <p className='text-red-500'>{formError.email}</p>
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
                                 <input type="password" name="password" placeholder="password" className="input input-bordered" value={formValues.password} onChange={handleChangeInput}/>
-                                { formError.password && <p className='text-red-500'>{formError.password}</p> }
+                                <p className='text-red-500'>{formError.password}</p>
                             </div>
                             <div className="form-control mt-6">
                                 <input type='submit' value='Sign up' className="btn btn-primary"/>

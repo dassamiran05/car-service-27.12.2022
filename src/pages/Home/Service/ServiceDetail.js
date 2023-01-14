@@ -24,9 +24,9 @@ const ServiceDetail = () => {
                         <p className='font-normal text-base leading-8 mt-7' style={{color:'#737373'}}>{description}</p>
                         <div className='grid grid-cols-2 gap-5 mt-7'>
                         {
-                            facility?.map(f => {
+                            facility?.map((f,i) => {
                                 return (
-                                    <div className='p-3.5 border-t-[2px] rounded-md' style={{borderColor:'#ff3811',backgroundColor:'#f3f3f3'}}>
+                                    <div className='p-3.5 border-t-[2px] rounded-md' style={{borderColor:'#ff3811',backgroundColor:'#f3f3f3'}} key={i}>
                                         <p className='font-bold text-xl lrading-6' style={{color:'#444'}}>{f.name}</p>
                                         <p className='font-normal text-base leading-7' style={{color:'#737373'}}>{f.details}</p>
                                     </div>

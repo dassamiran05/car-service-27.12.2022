@@ -66,7 +66,7 @@ const Manageservices = () => {
                                                 services.map(service => {
                                                     return (
                                                         <>
-                                                        <tr>
+                                                        <tr key={service._id}>
                                                             <th>
                                                                 <label>
                                                                     <button className="btn btn-square btn-outline btn-error" onClick={() => handleDeleteService(service._id)}>

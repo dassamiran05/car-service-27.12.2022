@@ -17,7 +17,7 @@ const Sidebar = ({id, price}) => {
                         {
                             services.map(serv => {
                                 return (
-                                    <Link to={`/serviceDetail/${serv._id}`}><li className='font-semibold text-base leading-5 p-3.5 w-full mb-1.5' style={{backgroundColor:'#fff',color:'#151515'}}>{serv.title}</li></Link>
+                                    <Link to={`/serviceDetail/${serv._id}`} key={serv._id}><li className='font-semibold text-base leading-5 p-3.5 w-full mb-1.5' style={{backgroundColor:'#fff',color:'#151515'}}>{serv.title}</li></Link>
                                 );
                             })
                         }

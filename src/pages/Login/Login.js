@@ -1,25 +1,33 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { toast } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../assets/images/login/login.svg';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import useToken from '../../hooks/useToken';
-import Loading from '../../shared/loading/Loading';
+// import Loading from '../../shared/loading/Loading';
 import PageTitle from '../../shared/pageTitle/PageTitle';
 
 const Login = () => {
-
-    const {signInUser, loading, setLoading} = useContext(AuthContext);
+    const {signInUser, loading, setLoading, signOutUser, setGlobalToken} = useContext(AuthContext);
     const [loginUserEmail, setloginuserEmail] = useState('');
     const [token] = useToken(loginUserEmail);
+    const [logerror, setLogerror] = useState('');
+    
 
     const location = useLocation();
     const navigate = useNavigate();
 
     const from = location.state?.from?.pathname || '/';
 
-    if(token){
-        navigate(from, { replace: true });    
-    }
+
+    useEffect(() => {
+        if(token){
+            setGlobalToken(token);
+            navigate(from, { replace: true });    
+        }
+    }, [token, from, navigate, setGlobalToken]);
+    
+    
 
     const handleLogin = event =>{
         event.preventDefault();
@@ -28,22 +36,37 @@ const Login = () => {
         const password = form.password.value;
 
         
-
         signInUser(email, password)
         .then(res =>{
             const user = res.user;
             console.log(user);
-            setloginuserEmail(email);
-            setLoading(false);  
+            if(user.emailVerified){
+                setloginuserEmail(email); 
+            }
+            else{
+                signOutUser()
+                .then(res => {
+                    // setUserDetail({});
+                })
+                .catch(error => console.error(error));
+                toast.error('Email is not verified');
+            }
+             
         })
-        .catch(error => console.error(error));
+        .catch(error => {
+            // console.error(error.message);
+            setLogerror(error.message);
+        })
+        .finally(() => {
+            setLoading(false);
+        })
     }
     
     
 
-    if(loading){
-        return <Loading></Loading>;
-    }
+        // if(loading){
+        //     return <Loading></Loading>;
+        // }
 
     return (
         <>
@@ -72,8 +95,9 @@ const Login = () => {
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <input type='submit' value='Login' className="btn btn-primary"/>
+                                <input type='submit' value='Login' disabled={loading} className="btn btn-primary"/>
                             </div>
+                            {logerror && <p className='text-red-500'>{logerror}</p>}
                         </form>
                         <p className='text-center'>New to genius car <Link to='/signup' className='font-bold text-orange-500'> Sign Up</Link></p>
                     </div>

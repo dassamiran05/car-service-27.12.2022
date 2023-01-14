@@ -1,33 +1,36 @@
-import React, { useContext, useEffect } from 'react';
-import { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+// import useToken from '../../hooks/useToken';
 
 const Header = () => {
-    const { user, signOutUser } = useContext(AuthContext);
+    const { user, signOutUser ,globalToken} = useContext(AuthContext);
+    // console.log(user);
     const [userdetail, setUserDetail] = useState({});
-    // console.log(userdetail);
+    // const [token] = useToken(user?.email);
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/username?email=${user?.email}`, {
-            headers:{
-                authorization:`Bearer ${localStorage.getItem('accessToken')}`
-            }
-        })
-        .then(res => res.json())
-        .then(data => {
-            setUserDetail(data);
-        });
-    }, [user?.email])
+        if(user?.email){
+
+            fetch(`http://localhost:5000/username?email=${user?.email}`, {
+                headers:{
+                    authorization:`Bearer ${globalToken}`
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                setUserDetail(data);
+            });
+        }
+    }, [user?.email, globalToken])
 
 
     const handleSignoutUser = () => {
         signOutUser()
         .then(res => {
-            console.log(res);
-            localStorage.removeItem('accessToken');
+            setUserDetail({});
         })
         .catch(error => console.error(error));
     }
@@ -48,7 +51,7 @@ const Header = () => {
 
     </>
 
-
+    
 
     return (
         <div className="navbar h-20 pt-12 mb-12 bg-base-100">
@@ -79,32 +82,20 @@ const Header = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
-                    {/* <li><a>Item 1</a></li>
-                    <li tabIndex={0}>
-                        <a>
-                            Parent
-                            <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
-                        </a>
-                        <ul className="p-2">
-                            <li><a>Submenu 1</a></li>
-                            <li><a>Submenu 2</a></li>
-                        </ul>
-                    </li>
-                    <li><a>Item 3</a></li> */}
                     {menuItems}
                 </ul>
             </div>
             <div className="navbar-end">
-                {/* <button className="btn btn-outline btn-warning">Appointment</button> */}
                 {
                     user?.email ?
                         <>  
-                            <div className='flex flex-col text-right'>
-                                <span style={{color:'#ff3811'}} className='text-xl'>{userdetail?.name}</span>
-                                {/* {
-                                    userdetail.role && <span className='text-xl'>{userdetail?.role}</span>
-                                } */}
-                            </div>
+                            { userdetail?.name && 
+                                <>
+                                    <div className='flex flex-col text-right'>
+                                        <span style={{color:'#ff3811'}} className='text-xl'>{userdetail?.name}</span>
+                                    </div>
+                                </>
+                            }
                             
                             <button variant="link" className="btn btn-ghost" onClick={handleSignoutUser}>Sign out</button>
                         </>
