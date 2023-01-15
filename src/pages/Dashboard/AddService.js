@@ -44,7 +44,7 @@ const AddService = () => {
 
                 // save  service to database
 
-                fetch('http://localhost:5000/services', {
+                fetch('https://car-service-server-main.vercel.app/services', {
                     method:'POST',
                     headers:{
                         'content-type': 'application/json',

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Product from '../Product/Product';
 
 const Products = () => {
@@ -8,7 +8,7 @@ const Products = () => {
 
     useEffect(() => {
         // fetch('products.json').then(res => res.json()).then(data => setProducts(data));
-        fetch('http://localhost:5000/products').then(res => res.json()).then(data => setProducts(data));
+        fetch('https://car-service-server-main.vercel.app/products').then(res => res.json()).then(data => setProducts(data));
     }, []);
     return (
         <div className='my-20'>

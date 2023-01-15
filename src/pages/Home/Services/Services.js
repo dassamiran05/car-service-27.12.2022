@@ -8,7 +8,7 @@ const Services = () => {
 
     useEffect(() => {
         // fetch('services.json').then(res => res.json()).then(data => setServices(data));
-        fetch('http://localhost:5000/services').then(res => res.json()).then(data => setServices(data));
+        fetch('https://car-service-server-main.vercel.app/services').then(res => res.json()).then(data => setServices(data));
     }, []);
     return (
         <div className='my-20' id='services'>

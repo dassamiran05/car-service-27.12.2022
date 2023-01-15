@@ -7,7 +7,7 @@ const useOrders = email => {
 
     useEffect(() => {
         setOrderloading(true);
-        fetch(`http://localhost:5000/orders?email=${email}`, {
+        fetch(`https://car-service-server-main.vercel.app/orders?email=${email}`, {
             headers:{
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`,
             }

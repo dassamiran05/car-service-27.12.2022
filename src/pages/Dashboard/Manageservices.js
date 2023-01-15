@@ -10,7 +10,7 @@ const Manageservices = () => {
     useEffect(() => {
         function getAllservicesbyadmin(){
             // setAllOrderLoading(true);
-            fetch('http://localhost:5000/admin/services', 
+            fetch('https://car-service-server-main.vercel.app/admin/services', 
             {
                 headers:{
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -30,7 +30,7 @@ const Manageservices = () => {
     const handleDeleteService = id =>{
         const proceed = window.confirm('Are you sure want to delete this Service');
         if (proceed) {
-            fetch(`http://localhost:5000/admin/service/${id}`, {
+            fetch(`https://car-service-server-main.vercel.app/admin/service/${id}`, {
                 method: 'DELETE',
                 headers:{
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`

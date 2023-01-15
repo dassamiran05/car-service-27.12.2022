@@ -55,7 +55,7 @@ const Checkout = () => {
             //     toast.error('You have already orderd the service');
             // }
             // else{
-            //     fetch('http://localhost:5000/orders', {
+            //     fetch('https://car-service-server-main.vercel.app/orders', {
             //     method: 'POST',
             //     headers: {
             //         'content-type': 'application/json'
@@ -94,7 +94,7 @@ const Checkout = () => {
                 toast.error('You have already orderd the service');
             }
             else{
-                fetch('http://localhost:5000/orders', {
+                fetch('https://car-service-server-main.vercel.app/orders', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

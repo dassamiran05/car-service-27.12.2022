@@ -1,19 +1,18 @@
 import React, { useContext } from 'react';
-// import { useEffect } from 'react';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import img from '../../assets/images/login/login.svg';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-// import useToken from '../../hooks/useToken';
 import PageTitle from '../../shared/pageTitle/PageTitle';
+import './signup.css';
 
 const Signup = () => {
     const {createUser, varifyEmail} = useContext(AuthContext);
-    // const [existsuser, setExistsuser] = useState(false);
     const initialvalues = {name : "", email : "", password : ""};
     const [formValues, setFormValues] = useState(initialvalues);
     const [formError, setFormError] = useState({});
+    const [show, setShow] = useState(false);
     
 
 
@@ -29,7 +28,7 @@ const Signup = () => {
 
     const handleCheckuser = (email , password, name) => {
         if(email){
-            return fetch(`http://localhost:5000/checkuser?email=${email}`)
+            return fetch(`https://car-service-server-main.vercel.app/checkuser?email=${email}`)
             .then(res => res.json())
             .then(data => {
             if(data.alreadyExists){
@@ -132,7 +131,7 @@ const Signup = () => {
 
     const saveUser = (name, email) =>{
         const user = {name, email};
-        const url = 'http://localhost:5000/users';
+        const url = 'https://car-service-server-main.vercel.app/users';
         fetch(url,{
             method:'POST',
             headers:{
@@ -147,6 +146,10 @@ const Signup = () => {
                 console.log(data.acknowledged);
             }   
         })
+    }
+
+    const handleShow = () => {
+        setShow(!show);
     }
     return (
         <>
@@ -173,11 +176,12 @@ const Signup = () => {
                                 <input type="text" name="email" placeholder="email" className="input input-bordered" value={formValues.email} onChange={handleChangeInput}/>
                                 { formError.email && <p className='text-red-500'>{formError.email}</p> }
                             </div>
-                            <div className="form-control">
+                            <div className="form-control" style={{position:'relative'}}>
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" name="password" placeholder="password" className="input input-bordered" value={formValues.password} onChange={handleChangeInput}/>
+                                <input type={show ? "text" : "password"} name="password" placeholder="password" className="input input-bordered" value={formValues.password} onChange={handleChangeInput}/>
+                                <span onClick={handleShow} className="showbtn2">{show ? 'Hide' : 'Show'}</span>
                                 { formError.password && <p className='text-red-500'>{formError.password}</p> }
                             </div>
                             <div className="form-control mt-6">

@@ -7,7 +7,7 @@ const Sidebar = ({id, price}) => {
     const [services, setServices] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/services').then(res => res.json()).then(data => setServices(data));
+        fetch('https://car-service-server-main.vercel.app/services').then(res => res.json()).then(data => setServices(data));
     }, []);
     return (
         <div className=' lg:w-1/4 sm:w-full'>

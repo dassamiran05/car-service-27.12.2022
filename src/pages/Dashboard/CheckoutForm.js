@@ -10,12 +10,12 @@ const CheckoutForm = ({orders}) => {
     const [transactionId, setTransactionId] = useState("");
     const [processing, setProcessing] = useState(false);
     const [clientSecret, setClientSecret] = useState("");
-    const {_id, price, customer, email, service} = orders;
+    const {_id, price, customer, email} = orders;
 
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://car-service-server-main.vercel.app/create-payment-intent", {
           method: "POST",
           headers: { 
             "Content-Type": "application/json" ,
@@ -88,7 +88,7 @@ const CheckoutForm = ({orders}) => {
             };
 
             //set payment data to database from client site
-            fetch("http://localhost:5000/payments", {
+            fetch("https://car-service-server-main.vercel.app/payments", {
               method: "POST",
               headers: { 
                 "Content-Type": "application/json" ,

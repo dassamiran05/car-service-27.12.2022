@@ -18,7 +18,7 @@ const Contactus = () => {
     const handleSubmitDetails = (event) => {
         event.preventDefault();
         setLoading(true);
-        fetch('http://localhost:5000/send_mail', {
+        fetch('https://car-service-server-main.vercel.app/send_mail', {
                 method:'POST',
                 headers:{
                     'content-type':'application/json'

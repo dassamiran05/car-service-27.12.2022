@@ -6,7 +6,7 @@ const Allusers = () => {
     const [users, setUsers] = useState([]);    
 
     useEffect(() => {
-        const url = 'http://localhost:5000/users';
+        const url = 'https://car-service-server-main.vercel.app/users';
         fetch(url, {
             headers:{
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -19,7 +19,7 @@ const Allusers = () => {
     }, []);
 
     const handleMakeAdmin = id =>{
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`https://car-service-server-main.vercel.app/users/admin/${id}`, {
             method:'PUT',
             headers:{
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -38,7 +38,7 @@ const Allusers = () => {
     const handleDeleteUser = (id, name) => {
         const proceed = window.confirm(`Are you sure you want to delete the user ${name}`);
         if(proceed){
-            fetch(`http://localhost:5000/users/admin/${id}`, {
+            fetch(`https://car-service-server-main.vercel.app/users/admin/${id}`, {
             method:'DELETE',
             headers:{
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`,

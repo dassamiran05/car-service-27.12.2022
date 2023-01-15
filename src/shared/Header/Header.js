@@ -14,7 +14,7 @@ const Header = () => {
     useEffect(() => {
         if(user?.email){
 
-            fetch(`http://localhost:5000/username?email=${user?.email}`, {
+            fetch(`https://car-service-server-main.vercel.app/username?email=${user?.email}`, {
                 headers:{
                     authorization:`Bearer ${globalToken}`
                 }

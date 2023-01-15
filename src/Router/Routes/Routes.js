@@ -50,12 +50,12 @@ const router = createBrowserRouter([
             {
                 path: '/serviceDetail/:id',
                 element: <ServiceDetail></ServiceDetail>,
-                loader:({params}) => fetch(`http://localhost:5000/service/${params.id}`)
+                loader:({params}) => fetch(`https://car-service-server-main.vercel.app/service/${params.id}`)
             },
             {
                 path: '/checkout/:id',
                 element: <PrivateRoute><Checkout></Checkout></PrivateRoute>,
-                loader:({params}) => fetch(`http://localhost:5000/service/${params.id}`)
+                loader:({params}) => fetch(`https://car-service-server-main.vercel.app/service/${params.id}`)
             },
             {
                 path: '/orders',
@@ -99,7 +99,7 @@ const router = createBrowserRouter([
             {
                 path:'/dashboard/payment/:id',
                 element:<Payment></Payment>,
-                loader:({params}) => fetch(`http://localhost:5000/orders/${params.id}`)
+                loader:({params}) => fetch(`https://car-service-server-main.vercel.app/orders/${params.id}`)
             }
         ]
     }

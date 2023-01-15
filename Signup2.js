@@ -44,7 +44,7 @@ const Signup = () => {
             const userPass = formValues.password;
             const userName = formValues.name;
 
-            fetch(`http://localhost:5000/checkuser?email=${userEmail}`)
+            fetch(`https://car-service-server-main.vercel.app/checkuser?email=${userEmail}`)
             .then(res => res.json())
             .then(data => {
                 if(data.alreadyExists){
@@ -114,7 +114,7 @@ const Signup = () => {
 
     const saveUser = (name, email) =>{
         const user = {name, email};
-        const url = 'http://localhost:5000/users';
+        const url = 'https://car-service-server-main.vercel.app/users';
         fetch(url,{
             method:'POST',
             headers:{
@@ -133,7 +133,7 @@ const Signup = () => {
     }
 
     // const getUserToken = email =>{
-    //     fetch(`http://localhost:5000/jwt?email=${email}`)
+    //     fetch(`https://car-service-server-main.vercel.app/jwt?email=${email}`)
     //     .then(res => res.json())
     //     .then(data => {
     //         if(data.accessToken){

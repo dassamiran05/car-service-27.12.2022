@@ -16,7 +16,7 @@ const Orders = () => {
     useEffect(() => {
         function getOrderbyMail(){
             setOrderloading(true);
-            fetch(`http://localhost:5000/orders?email=${user?.email}`, {
+            fetch(`https://car-service-server-main.vercel.app/orders?email=${user?.email}`, {
                 headers:{
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                 }
@@ -37,7 +37,7 @@ const Orders = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure want to delete this order');
         if (proceed) {
-            fetch(`http://localhost:5000/orders/${id}`, {
+            fetch(`https://car-service-server-main.vercel.app/orders/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

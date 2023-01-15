@@ -6,12 +6,14 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import useToken from '../../hooks/useToken';
 // import Loading from '../../shared/loading/Loading';
 import PageTitle from '../../shared/pageTitle/PageTitle';
+import './login.css';
 
 const Login = () => {
     const {signInUser, loading, setLoading, signOutUser, setGlobalToken} = useContext(AuthContext);
     const [loginUserEmail, setloginuserEmail] = useState('');
     const [token] = useToken(loginUserEmail);
     const [logerror, setLogerror] = useState('');
+    const [show, setShow] = useState(false);
     
 
     const location = useLocation();
@@ -68,6 +70,10 @@ const Login = () => {
         //     return <Loading></Loading>;
         // }
 
+        const handleShow = () => {
+            setShow(!show);
+        }
+
     return (
         <>
             <PageTitle title="Login"></PageTitle>
@@ -85,11 +91,13 @@ const Login = () => {
                                 </label>
                                 <input type="text" name="email" placeholder="email" className="input input-bordered" required/>
                             </div>
-                            <div className="form-control">
+                            <div className="form-control showform">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" name="password" placeholder="password" className="input input-bordered" required/>
+                                <input type={show ? "text" : "password"} name="password" placeholder="password" className="input input-bordered" required/>
+                                <span onClick={handleShow} className="showbtn">{show ? 'Hide' : 'Show'}</span>
+                                
                                 <label className="label">
                                     <Link to="#" className="label-text-alt link link-hover">Forgot password?</Link>
                                 </label>

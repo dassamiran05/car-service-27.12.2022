@@ -13,7 +13,7 @@ const Allorders = () => {
     useEffect(() => {
         function getAllorderbyadmin(){
             setAllOrderLoading(true);
-            fetch('http://localhost:5000/admin/orders', 
+            fetch('https://car-service-server-main.vercel.app/admin/orders', 
             {
                 headers:{
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -32,7 +32,7 @@ const Allorders = () => {
     const handleOrder = id =>{
         const proceed = window.confirm("Are you sure you want to delete the order");
         if(proceed){
-            fetch(`http://localhost:5000/admin/order/${id}`, {
+            fetch(`https://car-service-server-main.vercel.app/admin/order/${id}`, {
                 method:'DELETE',
                 headers:{
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`

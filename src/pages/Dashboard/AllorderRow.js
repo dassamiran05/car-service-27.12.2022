@@ -3,11 +3,11 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 
 const AllorderRow = ({order, handleOrder}) => {
-    const { _id, customer, email, message, phone, price, service, serviceName, paid } = order;
+    const { _id, customer, email, phone, price, service, serviceName, paid } = order;
     const [orderService, setOrderService] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/service/${service}`)
+        fetch(`https://car-service-server-main.vercel.app/service/${service}`)
         .then(res => res.json())
         .then(data => setOrderService(data));
     }, [service]);

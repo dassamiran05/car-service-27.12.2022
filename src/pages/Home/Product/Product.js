@@ -4,7 +4,7 @@ import { FaStar } from 'react-icons/fa';
 import './product.css';
 
 const Product = ({ product }) => {
-    const { _id, title, img, price, ratings, ratingsCount } = product;
+    const { title, img, price, ratings } = product;
 
     // const [rating, setRating] = useState(null);
     return (
